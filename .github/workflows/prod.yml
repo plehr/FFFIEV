@@ -8,11 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Upload ftp
-      uses: genietim/ftp-action@releases/v4.0.1
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        host: ${{ secrets.FTP_SERVER }}
-        user: ${{ secrets.FTP_USERNAME }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        localDir: "dist"
-        remoteDir: ${{ secrets.FTP_DIR }}
+        server-dir: ${{ secrets.FTP_DIR }}
+        protocol: ftps
+        dry-run: true
+        
